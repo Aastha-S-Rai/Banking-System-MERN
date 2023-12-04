@@ -1,6 +1,7 @@
-import connector from "./dbConnection";
+import connector from "./dbConnection.js";
+import mongoose from "mongoose";
 
-const userSchema = {
+const userSchema = mongoose.Schema({
     fname: { type: String, required:true },
     lname: { type:String, required:true },
     mname: { type:String, required:true },
@@ -17,7 +18,7 @@ const userSchema = {
     flatno: {type: String, required:true },
     balance_amount: {type: Number},
     user_type: {type: String, enum: ['Banker', 'Customer'] ,required:true}
-}
+});
 userSchema.virtual('name').
   get(function() { return `${this.fName} ${this.mname} ${this.lName}`; });
 
@@ -26,15 +27,13 @@ userSchema.virtual('address').
 
 const User = connector.model('users', userSchema);
 
-async function create(userData) {
+export async function create(userData) {
     const newUser = new User(userData);
     const user = await newUser.save();
     return user;
 }
 
-async function read(filter) {
+export async function read(filter) {
     const user = User.find(filter);
     return user
 }
-
-export default {create, read};

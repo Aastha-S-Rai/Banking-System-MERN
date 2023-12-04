@@ -1,5 +1,5 @@
 import { Router } from "express";
-import accountController from "../controller/accounts";
+import accountController from "../controller/accounts.js";
 
 const router = Router();
 router.post('/add', accountController.addLog);
