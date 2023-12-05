@@ -27,13 +27,22 @@ userSchema.virtual('address').
 
 const User = connector.model('users', userSchema);
 
-export async function create(userData) {
+export async function setUser(userData) {
     const newUser = new User(userData);
     const user = await newUser.save();
     return user;
 }
 
-export async function read(filter) {
+export async function readUser(filter) {
     const user = User.find(filter);
     return user
+}
+
+export async function updateBalance(filter, update) {
+  console.log(update);
+  const user = await User.findOneAndUpdate(filter, {$inc: update}, {
+    new: true
+  });
+  console.log(user.balance_amount)
+  return true;
 }

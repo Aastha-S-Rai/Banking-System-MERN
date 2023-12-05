@@ -1,8 +1,9 @@
 import mongoose from "mongoose";
+import dotenv from "dotenv";
 
+dotenv.config();
 mongoose.set("strictQuery", false);
-mongoose.connect(
-  "mongodb+srv://aastharai2003:EaAhr6qJdkYCyto9@cluster0.oulp2f9.mongodb.net/?retryWrites=true&w=majority"
-);
+mongoose.connect(`${process.env.DB_URL}`);
 const connector = mongoose;
 export default connector;
+

@@ -1,8 +1,11 @@
-import {create, read} from "../models/users.js";
+import {setUser, readUser} from "../models/users.js";
+import bcrypt from "bcrypt";
 
 async function createUser(req, res) {
-    const data = JSON.parse(req.body);
-    const result = await create(data);
+    const data = req.body;
+    const hashedPassword = await bcrypt.hash(req.body.password, 10);
+    data.password = hashedPassword;
+    const result = await setUser(data);
     if(result){
         res.status(500);
         res.json({res: result});
@@ -15,7 +18,7 @@ async function createUser(req, res) {
 
 async function getUsers(req, res) {
     const filter = req.body.filter;
-    const users = await read(filter);
+    const users = await readUser(filter);
     if(users){
         res.status(500);
         res.json({res: users});
