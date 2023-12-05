@@ -5,6 +5,7 @@ import { createSecretToken } from "../middleware/secretToken.js"
 export default async function loginUser(req, res){
     const {email, password} = req.body;
     const result = await readUser({email: email});
+    const id = result[0]._id;
     if(!result){
         res.status(200);
         res.body({res: "Email not found"});
@@ -16,7 +17,7 @@ export default async function loginUser(req, res){
               res.body({res: "password mismatched"})
             }
             if (result) {
-                const token = createSecretToken(result[0]._id);
+                const token = createSecretToken(id);
                 res.cookie("token", token, {
                   withCredentials: true,
                   httpOnly: false,
