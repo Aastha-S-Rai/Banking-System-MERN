@@ -18,12 +18,16 @@ export default async function loginUser(req, res){
             }
             if (result) {
                 const token = createSecretToken(id);
-                res.cookie("token", token, {
-                  withCredentials: true,
-                  httpOnly: false,
-                });
+                // res.cookie("token", token, {
+                //   withCredentials: true,
+                //   httpOnly: false,
+                // });
                 res.status(200)
-                res.json({ res: "User signed in successfully", success: true, user: result });
+                res.json({ res: "User signed in successfully", success: true, user: result, token: token });
+            }
+            else{
+                res.status(200);
+                res.json({err: "Login Failed"});
             }
         });
           
