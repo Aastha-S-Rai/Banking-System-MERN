@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Cookies } from "react-cookie";
 import { Navigate, useNavigate } from "react-router-dom";
-import CustomerList from "../components/CustomerList";
+import CustomerList from "../components/CustomerList.jsx";
 import axios from "axios";
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';

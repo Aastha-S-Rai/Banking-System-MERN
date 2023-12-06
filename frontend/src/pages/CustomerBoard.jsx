@@ -126,10 +126,6 @@ const CustomerBoard = () => {
     cookies.remove("token");
     navigate("/");
   };
-
-  if (userToken != undefined) {
-    navigate('/')
-  }
   useEffect(() => {
     getData();
   }, []);
