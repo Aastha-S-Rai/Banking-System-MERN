@@ -46,8 +46,14 @@ const Login = () => {
       const response = await axios.post("http://localhost:4000/login", userObj);
       console.log("POST Response:", response);
       if (response.data.res) {
-        cookies.set("user", response.data.res);
-        navigate("/home");
+        cookies.set("user", response.data.user);
+        cookies.set("token", response.data.token);
+        if(response.data.user.user_type == "Customer"){
+          navigate("/dashboard");
+        }
+        else{
+          navigate("/BankerBoard");
+        }
         console.log("After navigating to /home");
       }
       // Handle the response as needed
@@ -95,10 +101,6 @@ const Login = () => {
           >
             Login
           </Button>
-
-          <div className="mt-1">
-            Don't already have an account? <Link to="/signup">Signup</Link>
-          </div>
         </div>
       </div>
     </div>

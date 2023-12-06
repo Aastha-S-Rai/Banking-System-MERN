@@ -2,10 +2,10 @@ import connector from "./dbConnection.js";
 import mongoose from "mongoose";
 
 const accountSchema = mongoose.Schema({
-    sender_id: {type: connector.Schema.Types.ObjectId, ref:"users", required:true},
-    recipient_id: {type: connector.Schema.Types.ObjectId, ref:"users", required:true},
+    user_id: {type: connector.Schema.Types.ObjectId, ref:"users", required:true},
     transaction_amount: {type: Number, required: true},
-    transaction_date: {type: Date, required: true}
+    transaction_type: {type: String, enum: ["deposit", "withdraw"] ,required:true},
+    transaction_date: {type: Date}
 });
 
 const Account = connector.model("accounts", accountSchema);

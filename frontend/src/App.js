@@ -2,7 +2,8 @@ import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Login from "./pages/login.jsx";
 import Home from "./pages/home.jsx";
-import Signin from "./pages/signin.jsx";
+import BankerBoard from "./pages/BankerBoard.jsx";
+import CustomerBoard from "./pages/CustomerBoard.jsx";
 
 function App() {
   return (
@@ -11,7 +12,8 @@ function App() {
         <Routes>
           <Route path="/" element={<Login />} />
           <Route path="/home" element={<Home />} />
-          <Route path="/signin" element={<Signin />} />
+          <Route path="/BankerBoard" element={<BankerBoard />} />
+          <Route path="/dashboard" element={<CustomerBoard />} />
         </Routes>
       </BrowserRouter>
     </div>
