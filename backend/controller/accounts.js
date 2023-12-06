@@ -4,6 +4,7 @@ import mongoose from "mongoose";
 
 async function addLog(req, res) {
     const data = req.body;
+    console.log("Data==>", data);
     const user_id = new mongoose.Types.ObjectId(data.user_id);
     const Ttype = data.transaction_type;
     const Tamount = data.transaction_amount;
@@ -14,8 +15,8 @@ async function addLog(req, res) {
             if(deduct == true){
                 const result = await create(data);
                 if(result){
-                    res.status(500);
-                    res.json({res: "Withdraw successful"});
+                    res.status(200);
+                    res.json({res: "Withdraw successful", status: 1});
                 }
                 else{
                     res.status(200);
@@ -28,7 +29,7 @@ async function addLog(req, res) {
             }
         }
         else{
-            res.status(500);
+            res.status(200);
             res.json({res: "Insufficient Balance"})
         }
     }
@@ -37,11 +38,11 @@ async function addLog(req, res) {
         if(update == true){
             const result = await create(data);
             if(result){
-                res.status(500);
-                res.json({res: "Deposit successful"});
+                res.status(200);
+                res.json({res: "Deposit successful", status: 1});
             }
             else{
-                res.status(200);
+                res.status(500);
                 res.json({err: "something went wrong from our side"});
             }
         }
@@ -51,8 +52,9 @@ async function addLog(req, res) {
 }
 
 async function getLogs(req, res) {
-    const filter = req.body.filter;
-    const logs = await read(filter);
+    const id = req.body.user_id;
+    const user_id = new mongoose.Types.ObjectId(id);
+    const logs = await read({user_id: user_id});
     if(logs){
         res.status(200);
         res.json({res: logs});

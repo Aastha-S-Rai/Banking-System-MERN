@@ -20,11 +20,11 @@ async function getUsers(req, res) {
     const filter = req.body.filter;
     const users = await readUser(filter);
     if(users){
-        res.status(500);
+        res.status(200);
         res.json({res: users});
     }
     else {
-        res.status(200);
+        res.status(500);
         res.json({err: "something went wrong"});
     }
 }
