@@ -7,11 +7,11 @@ async function createUser(req, res) {
     data.password = hashedPassword;
     const result = await setUser(data);
     if(result){
-        res.status(500);
+        res.status(200);
         res.json({res: result});
     }
     else{
-        res.status(200);
+        res.status(500);
         res.json({err: "something went wrong"});
     }
 }

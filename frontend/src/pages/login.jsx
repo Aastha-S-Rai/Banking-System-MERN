@@ -101,6 +101,9 @@ const Login = () => {
           >
             Login
           </Button>
+          <div className="mt-1">
+          Don't already have an account? <Link to="/">Signup</Link>
+        </div>
         </div>
       </div>
     </div>
