@@ -60,7 +60,7 @@ const CustomerList = (props) => {
       };
       try {
         const response = await axios.post(
-          "http://localhost:4000/accounts/get",
+          "https://bankinsystem1.onrender.com/accounts/get",
           postObj
         );
         console.log("RESPONSE:", response);

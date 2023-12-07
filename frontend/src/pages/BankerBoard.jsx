@@ -22,7 +22,7 @@ const BankerBoard = () => {
     };
     try {
       const response = await axios.post(
-        "http://localhost:4000/users/get",postObj
+        "https://bankinsystem1.onrender.com/users/get",postObj
       );
       console.log("RESPONSE:", response);
 
