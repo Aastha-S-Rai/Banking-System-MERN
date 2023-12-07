@@ -57,7 +57,6 @@ const BankerBoard = () => {
 
   return (
     <div>
-      {user_type == "Banker" &&
       <div>
       <div className="nav-container">
         <Box sx={{ flexGrow: 1 }} color="info">
@@ -80,7 +79,6 @@ const BankerBoard = () => {
       </div>
       <CustomerList customersData={customersData} />
       </div>
-      }
       
       
     </div>

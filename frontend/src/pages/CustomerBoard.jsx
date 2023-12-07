@@ -134,7 +134,6 @@ const CustomerBoard = () => {
   return (
     
     <div>
-      {user_type == "Customer" &&
       <div>
       <div className="nav-container">
       <Box sx={{ flexGrow: 1 }} color="info">
@@ -163,7 +162,6 @@ const CustomerBoard = () => {
         </div>
       <AccountList accountsData={accountsData} />
       </div>
-    }
         
       
       
