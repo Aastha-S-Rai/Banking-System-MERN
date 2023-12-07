@@ -29,6 +29,7 @@ const CustomerBoard = () => {
   const navigate = useNavigate();
   const userToken = cookies.get("token");
   const user = cookies.get("user");
+  const user_type = user.user_type;
 
   const defaultTransactionData = {
     user_id: user._id,
@@ -131,33 +132,41 @@ const CustomerBoard = () => {
   }, []);
 
   return (
+    
     <div>
+      {user_type == "Customer" &&
+      <div>
       <div className="nav-container">
-        <Box sx={{ flexGrow: 1 }} color="info">
-          <AppBar position="static" color="info">
-            <Toolbar>
-              <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                Accounts
-              </Typography>
-              <Button color="inherit" onClick={handleOpenWithdraw}>
-                Withdraw
-              </Button>
-              <Button color="inherit" onClick={handleOpenDeposit}>
-                Deposit
-              </Button>
-              <Button
-                color="inherit"
-                onClick={() => {
-                  clearCookies();
-                }}
-              >
-                Logout
-              </Button>
-            </Toolbar>
-          </AppBar>
-        </Box>
-      </div>
+      <Box sx={{ flexGrow: 1 }} color="info">
+        <AppBar position="static" color="info">
+          <Toolbar>
+            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+              Accounts
+            </Typography>
+            <Button color="inherit" onClick={handleOpenWithdraw}>
+              Withdraw
+            </Button>
+            <Button color="inherit" onClick={handleOpenDeposit}>
+              Deposit
+            </Button>
+            <Button
+              color="inherit"
+              onClick={() => {
+                clearCookies();
+              }}
+            >
+              Logout
+            </Button>
+          </Toolbar>
+        </AppBar>
+      </Box>
+        </div>
       <AccountList accountsData={accountsData} />
+      </div>
+    }
+        
+      
+      
 
       <Modal
         open={openWithdraw}

@@ -15,6 +15,8 @@ const BankerBoard = () => {
   const [customersData, setCustomersData] = useState([]);
   const userToken = cookies.get("token");
   console.log("Token", userToken);
+  const user = cookies.get('user');
+  const user_type = user.user_type;
 
   const getData = async () => {
     const postObj = {
@@ -55,6 +57,8 @@ const BankerBoard = () => {
 
   return (
     <div>
+      {user_type == "Banker" &&
+      <div>
       <div className="nav-container">
         <Box sx={{ flexGrow: 1 }} color="info">
           <AppBar position="static" color="info">
@@ -75,6 +79,10 @@ const BankerBoard = () => {
         </Box>
       </div>
       <CustomerList customersData={customersData} />
+      </div>
+      }
+      
+      
     </div>
   );
 };
