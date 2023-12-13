@@ -1,48 +1,52 @@
 import connector from "./dbConnection.js";
-import mongoose from "mongoose";
+import { v4 as uuidv4 } from 'uuid';
 
-const userSchema = mongoose.Schema({
-    fname: { type: String, required:true },
-    lname: { type:String, required:true },
-    mname: { type:String},
-    email: { type:String, required:true },
-    password: { type: String, required:true },
-    country: {type: String},
-    state: {type: String},
-    city: {type: String},
-    district: {type: String },
-    street: {type: String },
-    landmark: {type: String },
-    building: {type: String },
-    pincode: {type:String},
-    flatno: {type: String },
-    balance_amount: {type: Number, required:true},
-    user_type: {type: String, enum: ['Banker', 'Customer'] ,required:true}
-});
-userSchema.virtual('name').
-  get(function() { return `${this.fName} ${this.mname} ${this.lName}`; });
+// const userSchema = mongoose.Schema({
+//     fname: { type: String, required:true },
+//     lname: { type:String, required:true },
+//     email: { type:String, required:true },
+//     password: { type: String, required:true },
+//     country: {type: String, default:"India"},
+//     balance_amount: {type: Number, required:true},
+//     user_type: {type: String, enum: ['Banker', 'Customer'] ,required:true}
+// });
 
-userSchema.virtual('address').
-  get(function() { return `${flatno} ${building}, ${street}, ${landmark}, ${district}, ${city} ${state} ${country}, ${pincode}`; });
+export const setUser = async (fname, lname, mname, email, password, country, balance_amount, user_type) => {
+  const _id = uuidv4();
+  const insertQuery = `INSERT INTO users (_id, fname, lname, mname, email, password, country, balance_amount, user_type) VALUES (${_id}, ${fname}, ${lname}, ${mname}, ${email}, ${password}, "India", ${balance_amount}, ${user_type})`;
 
-const User = connector.model('users', userSchema);
-
-export async function setUser(userData) {
-    const newUser = new User(userData);
-    const user = await newUser.save();
-    return user;
-}
-
-export async function readUser(filter) {
-    const user = User.find(filter);
-    return user
-}
-
-export async function updateBalance(filter, update) {
-  console.log(update);
-  const user = await User.findOneAndUpdate(filter, {$inc: update}, {
-    new: true
+  connector.query(insertQuery, (err, results) => {
+    if (err) {
+      console.error('Error creating record:', err);
+      return err;
+    }
+    console.log('Record created:', results);
+    return results;
   });
-  console.log(user.balance_amount)
-  return true;
-}
+};
+
+export const readRecords = async () => {
+  const selectQuery = 'SELECT * FROM users';
+
+  connector.query(selectQuery, (err, results) => {
+    if (err) {
+      console.error('Error reading records:', err);
+      return err;
+    }
+    console.log('Records:', results);
+    return results
+  });
+};
+
+export const updateBalance = (_id, balance_amount) => {
+  const updateQuery = `UPDATE users SET balance_amount = balance_amount + ${balance_amount} ? WHERE _id=${_id} ?`;
+
+  connector.query(updateQuery, (err, results) => {
+    if (err) {
+      console.error('Error updating record:', err);
+      return err;
+    }
+    console.log('Record updated:', results);
+    return results;
+  });
+};
