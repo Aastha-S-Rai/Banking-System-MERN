@@ -1,5 +1,6 @@
 import connector from "./dbConnection.js";
 import mongoose from "mongoose";
+// import {v4 as uuidv4} from 'uuid';
 
 const accountSchema = mongoose.Schema({
     user_id: {type: connector.Schema.Types.ObjectId, ref:"users", required:true},

@@ -54,7 +54,7 @@ const Signin = () => {
 
   const saveUserLoginData = async (userObj) => {
     const response = await axios.post(
-      "https://bankinsystem1.onrender.com/users/add",
+      "http://localhost:4000/users/add",
       userObj
     );
     console.log("POST Response:", response);
@@ -80,55 +80,63 @@ const Signin = () => {
         <h1 className="login-heading mouse-pointer">SignUp</h1>
 
         <div className="form-container">
-          <label className="heading-label">First name</label>
-          <input
-            type="text"
-            name="username"
-            id="username"
-            className="input-box"
-            onChange={(e) => {
-              handleOnChange("fname", e.target.value);
-            }}
-            value={userLogin.fname}
-          />
-
-          <label className="heading-label">Last name</label>
-          <input
-            type="text"
-            name="username"
-            id="username"
-            className="input-box"
-            onChange={(e) => {
-              handleOnChange("lname", e.target.value);
-            }}
-            value={userLogin.lname}
-          />
-          <label className="heading-label">Email</label>
-          <input
-            type="email"
-            name="username"
-            id="username"
-            className="input-box"
-            onChange={(e) => {
-              handleOnChange("email", e.target.value);
-            }}
-            value={userLogin.email}
-          />
-
-          <label className="heading-label">Password</label>
-          <input
-            type="text"
-            name="password"
-            id="password"
-            className="input-box"
-            onChange={(e) => {
-              handleOnChange("password", e.target.value);
-            }}
-            value={userLogin.password}
-          />
+          <div className="input-group">
+            <div>
+              <label className="heading-label">First name</label>
+              <input
+                type="text"
+                name="username"
+                id="username"
+                className="input-box"
+                onChange={(e) => {
+                  handleOnChange("fname", e.target.value);
+                }}
+                value={userLogin.fname}
+              />
+            </div>
+            <div>
+              <label className="heading-label">Last name</label>
+              <input
+                type="text"
+                name="username"
+                id="username"
+                className="input-box"
+                onChange={(e) => {
+                  handleOnChange("lname", e.target.value);
+                }}
+                value={userLogin.lname}
+              />
+            </div>
+            <div>
+              <label className="heading-label">Email</label>
+              <input
+                type="email"
+                name="username"
+                id="username"
+                className="input-box"
+                onChange={(e) => {
+                  handleOnChange("email", e.target.value);
+                }}
+                value={userLogin.email}
+              />
+            </div>
+            <div>
+              <label className="heading-label">Password</label>
+              <input
+                type="text"
+                name="password"
+                id="password"
+                className="input-box"
+                onChange={(e) => {
+                  handleOnChange("password", e.target.value);
+                }}
+                value={userLogin.password}
+              />
+            </div>
+          </div>
 
           <FormControl>
-            <FormLabel id="demo-radio-buttons-group-label">Type</FormLabel>
+            <label className="heading-label">Type</label>
             <RadioGroup
               aria-labelledby="demo-radio-buttons-group-label"
               defaultValue={userLogin.user_type}
@@ -152,8 +160,10 @@ const Signin = () => {
               />
             </RadioGroup>
           </FormControl>
+
           {userLogin.user_type == "Customer" && (
-            <TextField
+            <div className="amount-field">
+              <TextField
               required
               className="popup-field"
               id="filled-password-input"
@@ -167,6 +177,8 @@ const Signin = () => {
                 handleOnChange("balance_amount", e.target.value);
               }}
             />
+            </div>
+            
           )}
           <Button
             variant="contained"

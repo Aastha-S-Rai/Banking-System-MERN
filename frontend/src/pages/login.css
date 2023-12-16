@@ -50,3 +50,25 @@
 .mouse-pointer {
     cursor: pointer;
 }
+
+.input-group{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-bottom: 1rem;
+}
+
+.input-group div{
+    display: flex;
+    flex-direction: column;
+}
+
+.amount-field{
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    width: 100%;
+}
+
+.amount-field .popup-field {
+    width: 100%;
+    background-color: rgb(185, 244, 252);
+}

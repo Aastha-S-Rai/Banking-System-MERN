@@ -8,11 +8,11 @@ import loginUser from "./controller/auth.js"
 const app = express();
 const port = 4000;
 
-const corsOptions = {
-  origin: "https://banking-system-byaastha.onrender.com", // frontend URI (ReactJS)
-}
+// const corsOptions = {
+//   origin: "https://banking-system-byaastha.onrender.com", // frontend URI (ReactJS)
+// }
 
-app.use(cors(corsOptions));
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());

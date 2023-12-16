@@ -70,7 +70,7 @@ const CustomerBoard = () => {
     };
     try {
       const response = await axios.post(
-        "https://bankinsystem1.onrender.com/accounts/get",
+        "http://localhost:4000/accounts/get",
         postObj
       );
       console.log("RESPONSE:", response);
@@ -95,7 +95,7 @@ const CustomerBoard = () => {
       console.log("TDATA AFTER ==>",transactionData);
       try {
         const response = await axios.post(
-          "https://bankinsystem1.onrender.com/accounts/add",transactionData
+          "http://localhost:4000/accounts/add",transactionData
         );
         console.log("RESPONSE:", response);
   
