@@ -1,0 +1,30 @@
+.formControl div{
+    margin: 0.5rem;
+}
+
+.boxModal{
+    /* height: 100vh; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modalForm {
+    background-color: whitesmoke;
+    padding: 3rem;
+    z-index: 100;
+}
+
+.formControl {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.headerSection{
+   display: flex;
+   flex-direction: row;
+   justify-content: space-between;
+   padding: 1rem;
+}
